@@ -142,6 +142,7 @@ require("lazy").setup({
    },
    { "nvim-lua/plenary.nvim", lazy = true },
    { 'rasulomaroff/reactive.nvim' },
+   { 'echasnovski/mini.nvim' },
    -- { "nvimtools/none-ls.nvim" },
    -- https://github.com/ThePrimeagen/refactoring.nvim
    {
