@@ -16,13 +16,16 @@ require("lazy").setup({
    "folke/which-key.nvim",
    { "folke/neoconf.nvim", cmd = "Neoconf" },
    "folke/neodev.nvim",
+   { 'echasnovski/mini.nvim', version = '*' },
    {
       -- LSP Configuration & Plugins
       'neovim/nvim-lspconfig',
       dependencies = {
          -- Automatically install LSPs to stdpath for neovim
-         'williamboman/mason.nvim',
-         'williamboman/mason-lspconfig.nvim',
+         -- 'williamboman/mason.nvim',
+         -- 'williamboman/mason-lspconfig.nvim',
+         { 'mason-org/mason.nvim', opts = {} },
+         'mason-org/mason-lspconfig.nvim',
 
          -- Useful status updates for LSP
          -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -44,6 +47,7 @@ require("lazy").setup({
    -- Fuzzy Finder (files, lsp, etc)
    {
       'nvim-telescope/telescope.nvim',
+      tag = '0.1.8',
       branch = '0.1.x',
       dependencies = {
          'nvim-lua/plenary.nvim',
@@ -100,7 +104,7 @@ require("lazy").setup({
          -- your configuration comes here
          -- or leave it empty to use the default settings
          -- refer to the configuration section below
-   	},
+      },
    },
    {
       -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -142,18 +146,30 @@ require("lazy").setup({
    },
    { "nvim-lua/plenary.nvim", lazy = true },
    { 'rasulomaroff/reactive.nvim' },
-   { 'echasnovski/mini.nvim' },
+   {
+      "coder/claudecode.nvim",
+      dependencies = { "folke/snacks.nvim" },
+      config = true,
+      keys = {
+         { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+         { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+         { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+         { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+         { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+         { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+      },
+   },
    -- { "nvimtools/none-ls.nvim" },
    -- https://github.com/ThePrimeagen/refactoring.nvim
-   {
-      'sainnhe/gruvbox-material',
-      lazy = false,
-      priority = 1000,
-      config = function()
-         vim.g.gruvbox_material_better_performance = true
-         vim.cmd 'colorscheme gruvbox-material'
-      end,
-   },
+--   {
+--      'sainnhe/gruvbox-material',
+--      lazy = false,
+--      priority = 1000,
+--      config = function()
+--         vim.g.gruvbox_material_better_performance = true
+--         vim.cmd 'colorscheme gruvbox-material'
+--      end,
+--   },
 })
 
 require('neodev').setup()
@@ -167,3 +183,5 @@ require('reactive').setup({
       modemsg = true
    },
 })
+
+vim.cmd("colorscheme seventies")

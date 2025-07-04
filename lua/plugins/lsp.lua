@@ -46,22 +46,23 @@ local on_attach = function(_, bufnr)
 end
 
 M.setup = function()
-      require('which-key').add {
-         { "<leader>c", group = "[C]ode" },
-         { "<leader>c_", hidden = true },
-         { "<leader>d", group = "[D]ocument" },
-         { "<leader>d_", hidden = true },
-         { "<leader>g", group = "[G]it" },
-         { "<leader>g_", hidden = true },
-         { "<leader>h", group = "More git" },
-         { "<leader>h_", hidden = true },
-         { "<leader>r", group = "[R]ename" },
-         { "<leader>r_", hidden = true },
-         { "<leader>s", group = "[S]earch" },
-         { "<leader>s_", hidden = true },
-         { "<leader>w", group = "[W]orkspace" },
-         { "<leader>w_", hidden = true },
-      }
+   -- document existing key chains
+   require('which-key').add {
+      { "<leader>c", group = "[C]ode" },
+      { "<leader>c_", hidden = true },
+      { "<leader>d", group = "[D]ocument" },
+      { "<leader>d_", hidden = true },
+      { "<leader>g", group = "[G]it" },
+      { "<leader>g_", hidden = true },
+      { "<leader>h", group = "More git" },
+      { "<leader>h_", hidden = true },
+      { "<leader>r", group = "[R]ename" },
+      { "<leader>r_", hidden = true },
+      { "<leader>s", group = "[S]earch" },
+      { "<leader>s_", hidden = true },
+      { "<leader>w", group = "[W]orkspace" },
+      { "<leader>w_", hidden = true },
+   }
 
    -- mason-lspconfig requires that these setup functions are called in this order
    -- before setting up the servers.
@@ -112,20 +113,20 @@ M.setup = function()
    -- Ensure the servers above are installed
    local mason_lspconfig = require('mason-lspconfig')
 
-   mason_lspconfig.setup {
-      ensure_installed = vim.tbl_keys(servers),
-   }
+   -- mason_lspconfig.setup {
+   --    ensure_installed = vim.tbl_keys(servers),
+   -- }
 
-   mason_lspconfig.setup_handlers {
-      function(server_name)
-         require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-         }
-      end,
-   }
+--   mason_lspconfig.setup_handlers {
+--      function(server_name)
+--         require('lspconfig')[server_name].setup {
+--            capabilities = capabilities,
+--            on_attach = on_attach,
+--            settings = servers[server_name],
+--            filetypes = (servers[server_name] or {}).filetypes,
+--         }
+--      end,
+--   }
 
    -- [[ Configure nvim-cmp ]]
    -- See `:help cmp`

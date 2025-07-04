@@ -39,6 +39,16 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
    command = "setfiletype simula"
 })
 
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+   pattern = "*.FCMacro",
+   command = "setfiletype python"
+})
+
+-- vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+--   pattern = "*.icn",
+--    command = "setfiletype icon"
+-- })
+
 vim.cmd [[filetype plugin on]]
 
 function ToggleNetrw()

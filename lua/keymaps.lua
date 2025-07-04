@@ -18,3 +18,7 @@ vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, { desc =
 vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { desc = "Signature" })
 
 vim.api.nvim_set_keymap('n', '<BS>', ':close<CR>', { noremap = true, silent = true, desc = "Close buffer/window" })
+
+vim.keymap.set("n", "<leader>ss", function()
+  require("plugins.sniperscope").toggle()
+end, { desc = "Toggle Sniper Scope" })
